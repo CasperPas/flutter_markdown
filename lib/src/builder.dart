@@ -43,18 +43,18 @@ class _BlockElement {
 
 /// A collection of widgets that should be placed adjacent to (inline with)
 /// other inline elements in the same parent block.
-/// 
-/// Inline elements can be textual (a/em/strong) represented by [RichText] 
+///
+/// Inline elements can be textual (a/em/strong) represented by [RichText]
 /// widgets or images (img) represented by [Image.network] widgets.
-/// 
+///
 /// Inline elements can be nested within other inline elements, inheriting their
 /// parent's style along with the style of the block they are in.
-/// 
-/// When laying out inline widgets, first, any adjacent RichText widgets are 
+///
+/// When laying out inline widgets, first, any adjacent RichText widgets are
 /// merged, then, all inline widgets are enclosed in a parent [Wrap] widget.
 class _InlineElement {
   _InlineElement(this.tag, {this.style});
- 
+
   final String tag;
 
   /// Created by merging the style defined for this element's [tag] in the
@@ -245,7 +245,7 @@ class MarkdownBuilder implements md.NodeVisitor {
     if (parts.isEmpty)
       return const SizedBox();
 
-    final String path = parts.first;
+    final String path = parts.first.replaceAll('&amp;', '&');
     double width;
     double height;
     if (parts.length == 2) {
